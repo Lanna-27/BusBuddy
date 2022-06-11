@@ -1,17 +1,40 @@
 package com.unal.busbuddy.model.Clases;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Entity
+@Table(name ="user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+
 public class User {
+    @Id
+    @GenerateValue(strategy = GenerationType.IDENTITY)
     private int idUser;
-    private String nickname, firstName, lastName, email, password;
-    private long telNumber;
+
+    @Column(name = "nickname")
+    private String nickname;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password; 
     private Date birthDate;
+    private long telNumber;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     //declaración variable para foto   
     
-    public User(int idUser, String nickname, String firstName, String lastName, String email, String password, long telNumber, Date birthDate){
+    public User(){
+        this.idUser = 0;
+        this.nickname = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
+        this.password = "";
+        this.telNumber = 0;
+        this.birthDate = "";
+    }
+
+    public User(String nickname, String firstName, String lastName, String email, String password, long telNumber, String birthDate){
         super();
-        this.idUser = idUser;
         this.nickname = nickname;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,6 +44,17 @@ public class User {
         this.birthDate = birthDate;
 
     }
+
+    public User(String nickname, String firstName, String email, String password, long telNumber, String birthDate){
+        this.nickname = nickname;
+        this.firstName = firstName;
+        this.lastName = "";
+        this.email = email;
+        this.password = password;
+        this.telNumber = telNumber;
+        this.birthDate = birthDate;
+    }
+
 
     //GETTERS
     public int getIdUser(){
@@ -51,11 +85,12 @@ public class User {
         return this.telNumber;
     }
 
-    public Date getBirthDate(){
+    public String getBirthDate(){
         return this.birthDate;
     }
 
     //SETTERS
+
     public void setIdUser(int idUser){
         this.idUser = idUser;
         return;
@@ -91,7 +126,7 @@ public class User {
         return;
     }
 
-    public void setBirthDate(Date birthDate){
+    public void setBirthDate(String birthDate){
         this.birthDate = birthDate;
         return;
     }
