@@ -1,16 +1,27 @@
 package com.unal.busbuddy.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class User {
     private int idUser;
-    private String nickname, firstName, lastName, email, password;
+    private String nickname, firstName, lastName, email, password, birthDate;
     private long telNumber;
-    private Date birthDate;
-    //declaración variable para foto   
-    
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    //declaración variable para foto  
+
+    public User(){
+        this.idUser = 0;
+        this.nickname = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.email = "";
+        this.password = "";
+        this.telNumber = 0;
+        this.birthDate = "";
+    }
+
     public User(int idUser, String nickname, String firstName, String lastName, String email, String password, long telNumber, Date birthDate){
-        super();
         this.idUser = idUser;
         this.nickname = nickname;
         this.firstName = firstName;
@@ -18,8 +29,18 @@ public class User {
         this.email = email;
         this.password = password;
         this.telNumber = telNumber;
-        this.birthDate = birthDate;
+        this.birthDate = sdf.format(birthDate);
+    }
 
+    public User(int idUser, String nickname, String firstName, String email, String password, long telNumber, Date birthDate){
+        this.idUser = idUser;
+        this.nickname = nickname;
+        this.firstName = firstName;
+        this.lastName = "";
+        this.email = email;
+        this.password = password;
+        this.telNumber = telNumber;
+        this.birthDate = sdf.format(birthDate);
     }
 
     //GETTERS
@@ -51,7 +72,7 @@ public class User {
         return this.telNumber;
     }
 
-    public Date getBirthDate(){
+    public String getBirthDate(){
         return this.birthDate;
     }
 
@@ -92,8 +113,16 @@ public class User {
     }
 
     public void setBirthDate(Date birthDate){
-        this.birthDate = birthDate;
+        this.birthDate = sdf.format(birthDate);
         return;
+    }
+    //MÉTODO TO STRING
+
+    public String toString(){
+        return "Usuario: " + this.nickname + "\n"+
+               "Nombre completo: " + this.firstName +" "+ this.lastName+"\n"+
+               "Numero de telefono: " + String.valueOf(this.telNumber) +"\n"+
+               "Fecha de nacimiento: " + this.birthDate;
     }
 
 }
