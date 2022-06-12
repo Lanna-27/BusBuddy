@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-BusbuddyApplication<busbuddy>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.unal.busbuddy.BusbuddyApplication",
+            "projectName": "busbuddy",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
