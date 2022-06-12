@@ -1,17 +1,13 @@
 package com.unal.busbuddy.model.Clases;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Entity
-@Table(name ="user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-
 public class User {
-    @Id
-    @GenerateValue(strategy = GenerationType.IDENTITY)
+   
     private int idUser;
 
-    @Column(name = "nickname")
     private String nickname;
     private String firstName;
     private String lastName;
@@ -19,10 +15,11 @@ public class User {
     private String password; 
     private Date birthDate;
     private long telNumber;
+    private int tipo;
     private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     //declaración variable para foto   
     
-    public User(){
+    public User() throws ParseException{
         this.idUser = 0;
         this.nickname = "";
         this.firstName = "";
@@ -30,10 +27,10 @@ public class User {
         this.email = "";
         this.password = "";
         this.telNumber = 0;
-        this.birthDate = "";
+        this.birthDate = sdf.parse("01/01/2000");
     }
 
-    public User(String nickname, String firstName, String lastName, String email, String password, long telNumber, String birthDate){
+    public User(String nickname, String firstName, String lastName, String email, String password, long telNumber, Date birthDate){
         super();
         this.nickname = nickname;
         this.firstName = firstName;
@@ -45,7 +42,7 @@ public class User {
 
     }
 
-    public User(String nickname, String firstName, String email, String password, long telNumber, String birthDate){
+    public User(String nickname, String firstName, String email, String password, long telNumber, Date birthDate){
         this.nickname = nickname;
         this.firstName = firstName;
         this.lastName = "";
@@ -86,7 +83,7 @@ public class User {
     }
 
     public String getBirthDate(){
-        return this.birthDate;
+        return sdf.format(this.birthDate);
     }
 
     //SETTERS
@@ -126,9 +123,9 @@ public class User {
         return;
     }
 
-    public void setBirthDate(String birthDate){
+    public void setBirthDate(Date birthDate){
         this.birthDate = birthDate;
         return;
-    }
+    } 
 
 }
