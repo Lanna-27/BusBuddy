@@ -1,4 +1,4 @@
-package com.unal.busbuddy.model;
+package main.java.com.unal.busbuddy.model.Entidades;
 
 import java.util.Date;
 
