@@ -18,7 +18,7 @@ public class Ruta implements Serializable {
     @Column(name="idruta")
     private int idRuta;
     @Column(name="idconductor")
-    private int idConductor;
+    private int idConductor; //c
     @NotNull
     @Column(name="idempresa")
     private int idEmpresa;
@@ -38,6 +38,16 @@ public class Ruta implements Serializable {
     @Column(name="fecha_llegada")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaLlegada;
+    @Column(name="precio")
+    private int precio;
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
 
     public Ruta() {
     }
